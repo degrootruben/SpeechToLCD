@@ -9,16 +9,20 @@ app.use(express.static("public", { root: __dirname }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-lcd.on('ready', _ => {
-    setInterval(_ => {
-        lcd.setCursor(0, 0);
-        lcd.autoscroll();
-        lcd.print("Hello world!", err => {
-            if (err) {
-                throw err;
-            }
-        });
-    }, 1000);
+lcd.on('ready',async _ => {
+    lcd.setCursor(0, 0);
+    lcd.autoscroll();
+    lcd.print("Hello world!", err => {
+    	if (err) {
+    		throw err;
+    	}
+	lcd.close();
+    });
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    console.log("Waiting is over!");
+    lcd.clear()
+    lcd.setCursor(0,0);
+    lcd.blink();
 });
 
 app.listen(8000, () => {
