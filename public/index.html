@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeechToLCD</title>
+</head>
+<body>
+    <input type="file" accept="audio/*" capture id="recorder"/>
+    <script>
+        const recorder = document.getElementById('recorder');
+
+        recorder.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const url = URL.createObjectURL(file);
+
+            let formData = new FormData();
+            formData.append("audio", file);
+
+            fetch("/upload_audio", {
+                method: "POST",
+                headers: "Content-type", "multipart/form-data",
+                body: formData
+            })
+            .then(response => console.log("File was succesfully uploaded!"))
+            .catch(error => console.log(error));
+        });
+    </script>
+</body>
+</html>
