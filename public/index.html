@@ -3,68 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./lib/p5.min.js"></script>
-    <script src="./lib/p5.sound.min.js"></script>
     <title>SpeechToLCD</title>
 </head>
 <body>
+    <input type="file" accept="audio/*" capture id="recorder">  
     <script>
-        let button;
-        let mic;
-        let soundRec;
-        let soundFile;
+        const recorder = document.getElementById('recorder');
 
-        function setup() {
-            mic = new p5.AudioIn();
-            mic.start();
-            soundRec = new p5.SoundRecorder();
-            soundRec.setInput(mic);
-            soundFile = new p5.SoundFile();
+        recorder.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const url = URL.createObjectURL(file);
 
-            button = createDiv("Click to record");
-            button.position(100,100);
-            button.size(100,100);
-            button.style("background-color", "grey");
+            let formData = new FormData();
+            formData.append("audioBlob", file, "upload.wav");
 
-
-            button.mouseClicked((mouseEvent) => {
-                button.html("Recording....");
-                console.log("Recording....");
-                soundRec.record(soundFile);
-
-                let recordingTimer = setTimeout(() => {
-                    soundRec.stop();
-                    let audioBlob = soundFile.getBlob();
-
-                    let formData = new FormData(); 
-                    formData.append("audioBlob", audioBlob, "audio.wav");
-
-                    var serverURL = "/upload_audio";
-                    var httpRequestOptions = {
-                        method: "POST",
-                        body: formData,
-                        headers: new Headers({
-                        "enctype": "multipart/form-data"
-                        })
-                    };
-                    httpDo(
-                        serverURL,
-                        httpRequestOptions,
-                        successStatusCode => {
-                            console.log("Uploaded recording successfully: " + successStatusCode);
-                            button.html("Recording uploaded!");
-                        },
-                        error => { 
-                            console.error(error);
-                            button.html(error);
-                        }
-                    )
-                    console.log("Recording stopped!");
-                    button.html("Recording stopped!");
-                },5000);
-
-            });
-        }
+            fetch("/upload_audio", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => console.log("File was succesfully uploaded!"))
+            .catch(error => console.log(error));
+        });
     </script>
 </body>
 </html>

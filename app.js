@@ -8,7 +8,7 @@ const key = fs.readFileSync("./key.pem");
 const cert = fs.readFileSync("./cert.pem");
 const server = https.createServer({key: key, cert: cert}, app);
 
-const upload = multer();
+const upload = multer({ dest: "./public/uploads/" });
 
 app.use(express.static("public", { root: __dirname }));
 app.use(express.urlencoded({ extended: true }));
