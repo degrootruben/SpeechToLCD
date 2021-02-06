@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
+    <script src="https://raw.githubusercontent.com/IDMNYU/p5.js-speech/master/lib/p5.speech.js"></script>
     <title>SpeechToLCD</title>
 </head>
 <body>
-    <input type="file" accept="audio/*" capture id="recorder"/>
+    <input type="file" accept="audio/*" capture id="recorder">    
     <script>
         const recorder = document.getElementById('recorder');
 
