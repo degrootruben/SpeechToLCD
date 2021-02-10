@@ -4,17 +4,7 @@ import os
 import time
 import RPi.GPIO as GPIO
 
-dirname = os.path.dirname(__file__)
-
-r = sr.Recognizer()
-audioFile = sr.AudioFile(os.path.join(dirname, "public\\upload.wav"))
-with audioFile as source:
-    audio = r.record(source)
-
-print(r.recognize_google(audio, language="nl-NL"))
-
-
-# Zuordnung der GPIO Pins (ggf. anpassen)
+# LCD code
 LCD_RS = 4
 LCD_E  = 17
 LCD_DATA4 = 18
@@ -22,16 +12,16 @@ LCD_DATA5 = 22
 LCD_DATA6 = 23
 LCD_DATA7 = 24
 
-LCD_WIDTH = 16 		# Zeichen je Zeile
-LCD_LINE_1 = 0x80 	# Adresse der ersten Display Zeile
-LCD_LINE_2 = 0xC0 	# Adresse der zweiten Display Zeile
+LCD_WIDTH = 16 	
+LCD_LINE_1 = 0x80 
+LCD_LINE_2 = 0xC0
 LCD_CHR = GPIO.HIGH
 LCD_CMD = GPIO.LOW
 E_PULSE = 0.0005
 E_DELAY = 0.0005
 
 def lcd_send_byte(bits, mode):
-	# Pins auf LOW setzen
+	# Set all pins to low
 	GPIO.output(LCD_RS, mode)
 	GPIO.output(LCD_DATA4, GPIO.LOW)
 	GPIO.output(LCD_DATA5, GPIO.LOW)
@@ -82,7 +72,21 @@ def lcd_message(message):
 	  lcd_send_byte(ord(message[i]),LCD_CHR)
 	
 if __name__ == '__main__':
-	# initialisieren
+	# Initialise
+	# Speech recognition code
+	dirname = os.path.dirname(os.path.abspath(__file__))
+	
+	r = sr.Recognizer()
+	audioFile = sr.AudioFile(os.path.join(dirname, "public/upload.wav"))
+
+	with audioFile as source:
+		audio = r.record(source)
+
+	speech = r.recognize_google(audio, language="nl-NL")
+	print(speech)
+	partOneOfSpeech = speech[:16]
+	partTwoOfSpeech = speech[16:]
+
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setwarnings(False)
 	GPIO.setup(LCD_E, GPIO.OUT)
@@ -94,16 +98,15 @@ if __name__ == '__main__':
 
 	display_init()
 
+	# lcd_send_byte(LCD_LINE_1, LCD_CMD)
+	# lcd_message(partOneOfSpeech)
+	# lcd_send_byte(LCD_LINE_2, LCD_CMD)
+	# lcd_message(partTwoOfSpeech)
 	
-	lcd_send_byte(LCD_LINE_1, LCD_CMD)
-	lcd_message("Es scheint zu")
-	lcd_send_byte(LCD_LINE_2, LCD_CMD)
-	lcd_message("funktionieren :)")
+	# time.sleep(4)
 	
-	time.sleep(4)
-	
-	msg1 = "Dies ist ein"
-	msg2 = "kleiner Test"
+	msg1 = partOneOfSpeech
+	msg2 = partTwoOfSpeech
 	for i in range(len(msg1)):
 		lcd_send_byte(LCD_LINE_1, LCD_CMD)
 		lcd_message(msg1[:i+1])

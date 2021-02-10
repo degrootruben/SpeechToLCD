@@ -29,9 +29,13 @@ io.on("connect", client => {
         const dataURL = data.audio.dataURL.split(",").pop();
         let fileBuffer = Buffer.from(dataURL, "base64");
         fs.writeFileSync("./public/upload.wav", fileBuffer);
-        const python = spawn("python", ["speech.py"]);
-        python.stdout.on("data", data => { 
-            io.emit("result", data.toString())
+        const python = spawn("python3", ["speech.py"]);
+        python.stdout.on("data", data => {
+            io.emit("result", data.toString());
+        });
+        python.on("exit", function() {
+            python.kill();
+            console.log("Python script ended");
         });
     });
 });

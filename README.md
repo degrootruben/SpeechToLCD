@@ -10,7 +10,7 @@ pip install SpeechRecognition
 
 
 ## Todo
-- [ ] Send recognized speech data to LCD in Python script.
+- [x] Send recognized speech data to LCD in Python script.
 
 
 ## Links
