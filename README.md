@@ -8,5 +8,5 @@ pip install SpeechRecognition
 ```
 
 Most information and inspiration from this project came from the following links:
-https://medium.com/google-cloud/building-a-client-side-web-app-which-streams-audio-from-a-browser-microphone-to-a-server-part-ii-df20ddb47d4e
-https://realpython.com/python-speech-recognition/
+- https://medium.com/google-cloud/building-a-client-side-web-app-which-streams-audio-from-a-browser-microphone-to-a-server-part-ii-df20ddb47d4e
+- https://realpython.com/python-speech-recognition/
