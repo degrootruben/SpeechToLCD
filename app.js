@@ -1,5 +1,4 @@
 const express = require("express");
-const multer = require("multer");
 const fs = require("fs");
 const https = require("https");
 
@@ -13,7 +12,6 @@ const io = require("socket.io")(server, {
     },
   });
 
-const upload = multer({ dest: "./public/uploads/" });
 
 require("dotenv").config();
 
