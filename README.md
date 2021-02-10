@@ -15,5 +15,6 @@ pip install SpeechRecognition
 
 ## Links
 Most information and inspiration for this project came from the following links:
-- https://medium.com/google-cloud/building-a-client-side-web-app-which-streams-audio-from-a-browser-microphone-to-a-server-part-ii-df20ddb47d4e
-- https://realpython.com/python-speech-recognition/
+- For the microphone input from front-end to back-end: https://medium.com/google-cloud/building-a-client-side-web-app-which-streams-audio-from-a-browser-microphone-to-a-server-part-ii-df20ddb47d4e
+- For speech recognition in Python: https://realpython.com/python-speech-recognition/
+- For setting up the HD44780 with the Raspberry Pi: https://tutorials-raspberrypi.com/raspberry-pi-lcd-display-16x2-characters-display-hd44780/
