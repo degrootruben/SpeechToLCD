@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const https = require("https");
-const {spawn} = require('child_process');
+const {spawn} = require("child_process");
 
 const app = express();
 const key = fs.readFileSync("./key.pem");
@@ -29,13 +29,13 @@ app.use((req, res) => {
     res.status(404).send("Error 404 not found");
 });
 
-io.on('connect', client => {
-    client.on('message', async data => {
-        const dataURL = data.audio.dataURL.split(',').pop();
-        let fileBuffer = Buffer.from(dataURL, 'base64');
+io.on("connect", client => {
+    client.on("message", async data => {
+        const dataURL = data.audio.dataURL.split(",").pop();
+        let fileBuffer = Buffer.from(dataURL, "base64");
         fs.writeFileSync("./public/upload.wav", fileBuffer);
-        const python = spawn('python', ['main.py']);
-        python.stdout.on('data', data => { 
+        const python = spawn("python", ["speech.py"]);
+        python.stdout.on("data", data => { 
             io.emit("result", data.toString())
         });
     });

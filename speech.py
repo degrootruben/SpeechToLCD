@@ -3,7 +3,7 @@ import os
 dirname = os.path.dirname(__file__)
 
 r = sr.Recognizer()
-audioFile = sr.AudioFile(os.path.join(dirname, 'public\\upload.wav'))
+audioFile = sr.AudioFile(os.path.join(dirname, "public\\upload.wav"))
 with audioFile as source:
     audio = r.record(source)
 
