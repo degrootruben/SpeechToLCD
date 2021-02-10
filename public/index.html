@@ -43,15 +43,8 @@
                     type: "audio",
                     mimeType: "audio/webm",
                     sampleRate: 44100,
-                    // used by StereoAudioRecorder
-                    // the range 22050 to 96000.
-                    // let us force 16khz recording:
                     desiredSampRate: 16000,
-
-                    // MediaStreamRecorder, StereoAudioRecorder, WebAssemblyRecorder
-                    // CanvasRecorder, GifRecorder, WhammyRecorder
                     recorderType: StereoAudioRecorder,
-                    // Dialogflow / STT requires mono audio
                     numberOfAudioChannels: 1
                 });
 
