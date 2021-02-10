@@ -12,6 +12,10 @@ pip install SpeechRecognition
 ## Todo
 - [x] Send recognized speech data to LCD in Python script.
 - [ ] Add functionality when the supplied text is longer then 32 characters the LCD starts scrolling.
+- [ ] Add a nice web UI with React or another front-end tool.
+- [ ] Make the Python code nice and readable.
+- [ ] Fully update the README.md also with info on FLAC.
+- [ ] Add comments to code.
 
 
 ## Links
