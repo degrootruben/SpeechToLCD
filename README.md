@@ -9,15 +9,6 @@ pip install SpeechRecognition
 ```
 
 
-## Todo
-- [x] Send recognized speech data to LCD in Python script.
-- [ ] Add functionality when the supplied text is longer then 32 characters the LCD starts scrolling.
-- [ ] Add a nice web UI with React or another front-end tool.
-- [ ] Make the Python code nice and readable.
-- [ ] Fully update the README.md also with info on FLAC.
-- [ ] Add comments to code.
-
-
 ## Links
 Most information and inspiration for this project came from the following links:
 - For the microphone input from front-end to back-end: https://medium.com/google-cloud/building-a-client-side-web-app-which-streams-audio-from-a-browser-microphone-to-a-server-part-ii-df20ddb47d4e
