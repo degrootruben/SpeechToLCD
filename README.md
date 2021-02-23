@@ -16,6 +16,7 @@ pip install SpeechRecognition
 - [ ] Make the Python code nice and readable.
 - [ ] Fully update the README.md also with info on FLAC.
 - [ ] Add comments to code.
+- [ ] Maybe use WebSockets instead of Socket.io.
 
 
 ## Links
