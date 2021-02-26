@@ -7,6 +7,7 @@ For the speech recognition code in Python to properly work you have to:
 ```python
 pip install SpeechRecognition
 ```
+It is possible you need to install FLAC if you are on Linux.
 
 
 ## Links
