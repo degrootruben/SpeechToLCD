@@ -1,13 +1,32 @@
 # SpeechToLCD
-SpeechToLCD includes a Node.js server which makes a websocket connecting with a front-end HTML page as the client. In the front-end page one can record some audio which, after stopping the recording, will be send back to the Node.js server. The Node.js server launches a child process, which is the Python script. This script does the speech recognition for us. The recognized speech then gets send to the LCD connected to the Raspberry Pi.
+SpeechToLCD includes a Node.js server which makes a websocket connecting with an HTML page as the client. In the front-end page one can record some audio which, after stopping the recording, will be send back to the Node.js server. The Node.js server launches a child process, which is the Python script. This script preforms the speech recognition. The recognized speech then gets send to the LCD connected to the Raspberry Pi.
 
 
 ## How to use it
-For the speech recognition code in Python to properly work you have to:
+1. Connect an HD44780 LCD to your Raspberry Pi according to this schematic:
+![Schematic](https://tutorials-raspberrypi.de/wp-content/uploads/2014/08/lcd_Steckplatine.png)
+
+2. Download the contents of this repo on your Raspberry Pi:
+```
+git clone https://github.com/degrootruben/SpeechToLCD.git && cd SpeechToLCD
+```
+
+3. Install SpeechRecogniton for Python on your Raspberry Pi:
 ```python
 pip install SpeechRecognition
 ```
-It is possible you need to install FLAC if you are on Linux.
+
+4. It is possible you need to install FLAC on your Raspberry Pi:
+```
+sudo apt-get install flac
+```
+
+5. Launch the Node.js server on your Raspberry Pi:
+```javascript
+node app
+```
+
+6. Navigate to https://localhost:8000 in your browser.
 
 
 ## Links
