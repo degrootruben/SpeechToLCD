@@ -4,7 +4,7 @@ SpeechToLCD includes a Node.js server which makes a websocket connecting with an
 
 ## How to use it
 1. Connect an HD44780 LCD to your Raspberry Pi according to this schematic:
-![Schematic](https://tutorials-raspberrypi.de/wp-content/uploads/2014/08/lcd_Steckplatine.png)
+![Schematic](https://tutorials-raspberrypi.de/wp-content/uploads/2014/08/lcd_Steckplatine.png =100x)
 
 2. Download the contents of this repo on your Raspberry Pi:
 ```
