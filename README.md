@@ -8,7 +8,7 @@ SpeechToLCD includes a Node.js server which makes a websocket connecting with an
 
 2. Download the contents of this repo on your Raspberry Pi:
 ```
-git clone https://github.com/degrootruben/SpeechToLCD.git && cd SpeechToLCD
+git clone https://github.com/degrootruben/SpeechToLCD.git && cd SpeechToLCD/
 ```
 
 3. Install SpeechRecogniton for Python on your Raspberry Pi:
